@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Default Title
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <nav>
+    {% block NavBar %}
+    This is our Default Nav Bar
+    {% endblock %}
+    </nav>
+    <h1>
+    {% block content %}
+    Default Heading 1
+    {% endblock %}
+    </h1>
+</body>
+</html>
