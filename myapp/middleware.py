@@ -23,20 +23,25 @@ class RoleValidationMiddleware(MiddlewareMixin):
     ROLE_MAP={
         "/api/students/create/": ["admin"],
         "/api/students/list/": ["admin"],
-        "/api/students/view/": ["admin,student"],
-        "/api/students/update/": ["admin,student"],
+        "/api/students/view/": ["admin", "student"],
+        "/api/students/update/": ["admin", "student"],
         "/api/students/delete/": ["admin"],
     }
 
     def process_request(self,request):
-        path=request.path
-        role=request.headers.get("X-user-role",None)
+        for path_prefix,allowed_roles in self.ROLE_MAP.items():
+            if request.path.startswith(path_prefix):
+                role=request.headers.get("X-user-role")
+                if role not in allowed_roles:
+                    return JsonResponse({"msg":f"Access denied to role {role}"},status=403)
+        # path=request.path
+        # role=request.headers.get("X-user-role",None)
 
-        if path not in self.ROLE_MAP:
-            return None
+        # if path not in self.ROLE_MAP:
+        #     return None
         
-        allowed_role=self.ROLE_MAP[path]
-        if role not in allowed_role:
-            return JsonResponse({"msg":f"Access denied to role {role}"},status=403)
+        # allowed_role=self.ROLE_MAP[path]
+        # if role not in allowed_role:
+        #     return JsonResponse({"msg":f"Access denied to role {role}"},status=403)
         
-        return None
+        # return None
