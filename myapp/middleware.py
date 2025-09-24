@@ -34,10 +34,3 @@ class RoleValidationMiddleware(MiddlewareMixin):
                 role=request.headers.get("X-user-role")
                 if role not in allowed_roles:
                     return JsonResponse({"msg":f"Access denied to role {role}"},status=403)
-        # path=request.path
-        # role=request.headers.get("X-user-role",None)
-
-        # if path not in self.ROLE_MAP:
-        #     return None
-        
-        # allowed_rol
