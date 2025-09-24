@@ -40,8 +40,4 @@ class RoleValidationMiddleware(MiddlewareMixin):
         # if path not in self.ROLE_MAP:
         #     return None
         
-        # allowed_role=self.ROLE_MAP[path]
-        # if role not in allowed_role:
-        #     return JsonResponse({"msg":f"Access denied to role {role}"},status=403)
-        
-        # return None
+        # allowed_rol
