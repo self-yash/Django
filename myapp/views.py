@@ -3,9 +3,16 @@ from rest_framework import viewsets
 from .models import Student
 from .serializers import StudentSerializer
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .firebase import db
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def protected_view(request):
+    return Response({"msg": f"Hello {request.user.username}, you are authenticated!"})
+
 
 # Create your views here.
 @api_view(['POST'])
