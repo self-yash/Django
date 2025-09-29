@@ -13,6 +13,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token=super().get_token(user)
 
         token['username']=user.username
-        token['role']= getattr(user,'role','student')
+        token['role']= user.role
 
         return token
+    
+    def validate(self,attrs):
+        data=super().validate(attrs)
+
+        data['role']=self.user.role
+        return data
