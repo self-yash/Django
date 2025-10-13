@@ -59,9 +59,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'myapp.middleware.SimpleAuthMiddleware',
-    'myapp.middleware.RoleValidationMiddleware',
-    'myapp.middleware.CustomHeaderMiddleware',
+    # 'myapp.middleware.SimpleAuthMiddleware',
+    # 'myapp.middleware.RoleValidationMiddleware',
+    # 'myapp.middleware.CustomHeaderMiddleware',
 ]
 
 ROOT_URLCONF = 'Learning.urls'

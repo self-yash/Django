@@ -3,13 +3,13 @@ from .models import Order,OrderItem,Product
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model='Product'
-        fields={
+        model=Product
+        fields=(
             'name',
             'description',
             'price',
             'stock',
-        }
+        )
 
     def validate_price(self,value):
         if value<=0:
