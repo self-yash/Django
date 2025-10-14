@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .serializers import ProductSerializer
 from .models import Product
 from rest_framework.decorators import api_view
@@ -12,4 +12,9 @@ def product_list(request):
     serializer= ProductSerializer(products,many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
 def product_detail(request,pk):
+    products = get_object_or_404(Product, pk=pk)
+    serializer= ProductSerializer(products)
+    return Response(serializer.data)
+    
