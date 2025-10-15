@@ -23,12 +23,12 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model=OrderItem
-        fields=('product','quantity')
+        fields=('product','quantity',)
 
     
 class OrderSerializer(serializers.ModelSerializer):
     items=OrderItemSerializer(many=True, read_only=True)
-    
+
     class Meta:
         model=Order
         fields=(
