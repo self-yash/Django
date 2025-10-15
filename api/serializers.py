@@ -19,3 +19,12 @@ class ProductSerializer(serializers.ModelSerializer):
             )
 
         return value
+    
+    
+    
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Order
+        fields=(
+            'order_id','created_at','status','user',
+            )
