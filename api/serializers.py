@@ -32,7 +32,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def total(self,obj):
         order_items = obj.items.all()
-        return sum(OrderItem.item_subtotal for order_item in order_items)
+        return sum(order_item.item_subtotal for order_item in order_items)
 
     class Meta:
         model=Order
@@ -42,5 +42,5 @@ class OrderSerializer(serializers.ModelSerializer):
             'status',
             'user',
             'items',
-            'total',
+            'total_price',
         )
