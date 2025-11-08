@@ -7,4 +7,5 @@ urlpatterns = [
     path('product/info',views.product_info),
     path('product/<int:pk>/', views.product_detail),
     path('order/', views.order_list),
+    path('silk/', include('silk.urls', namespace='silk'))
 ]

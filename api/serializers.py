@@ -52,4 +52,3 @@ class ProductInfoSerializer(serializers.Serializer):
     product = ProductSerializer(many = True)
     count = serializers.IntegerField()
     max_price = serializers.FloatField()
-    
