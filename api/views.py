@@ -2,16 +2,26 @@ from django.shortcuts import render,get_object_or_404
 from django.db.models import Max
 from .serializers import ProductSerializer,OrderSerializer,ProductInfoSerializer
 from .models import Product,Order
+from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 # Create your views here.
 
-@api_view(['GET'])
-def product_list(request):
-    products = Product.objects.all()
-    serializer= ProductSerializer(products,many=True)
-    return Response(serializer.data)
+
+class ProductListAPIView(generics.ListAPIView):
+    queryset= Product.objects.all()
+    serializer_class = ProductSerializer
+
+class ProductDetailAPIView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+# @api_view(['GET'])
+# def product_list(request):
+#     products = Product.objects.all()
+#     serializer= ProductSerializer(products,many=True)
+#     return Response(serializer.data)
 
 @api_view(['GET'])
 def product_detail(request,pk):
