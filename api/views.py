@@ -11,11 +11,13 @@ from rest_framework.response import Response
 
 class ProductListAPIView(generics.ListAPIView):
     queryset= Product.objects.all()
+    # queryset = Product.objects.filter(stock__gt=0) if we want stock > 0 items only
     serializer_class = ProductSerializer
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    lookup_url_kwarg = 'product_id'
 
 # @api_view(['GET'])
 # def product_list(request):
