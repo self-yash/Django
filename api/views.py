@@ -25,6 +25,9 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     serializer_class = ProductSerializer
     lookup_url_kwarg = 'product_id'
 
+class OrderListAPIView(generics.ListAPIView):
+    queryset = Order.objects.prefetch_related('items__product')
+    serializer_class = OrderSerializer
 
 @api_view(['GET'])
 def product_detail(request,pk):
